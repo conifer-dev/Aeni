@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Raylib",
+        "repositoryURL": "https://github.com/STREGAsGate/Raylib.git",
+        "state": {
+          "branch": "master",
+          "revision": "6b990235e0f24e95c495d00a73371ec94eef87cb",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
