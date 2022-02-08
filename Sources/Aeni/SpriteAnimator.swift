@@ -35,5 +35,9 @@ public final class SpriteAnimator {
             timeSinceStart = 0
             startingFrame += 1
         }
+
+        if startingFrame >= endingFrame {
+            startingFrame = 0
+        }
     }
 }
