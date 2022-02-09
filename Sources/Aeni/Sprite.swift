@@ -2,7 +2,7 @@ import Raylib
 
 public final class Sprite {
     public var spriteSheet: Texture2D
-    public let frameDimensions: Vector2
+    public var frameDimensions: Vector2
     public var scale: Vector2
     public var position: Vector2
 

@@ -16,7 +16,7 @@ public final class SpriteAnimator {
     internal var isAnimationFinished: Bool = false
     internal var spriteSize: Vector2
 
-    public init(sprite: Sprite, origin: Vector2, rotation: Float32, startingFrame: UInt, endingFrame: UInt, column: UInt, duration: Float32, animationSpeed: Float32, repeatable: Bool, tintColor: Color) {
+    public init(sprite: Sprite,origin: Vector2, rotation: Float32, startingFrame: UInt, endingFrame: UInt, column: UInt, duration: Float32, animationSpeed: Float32, repeatable: Bool, tintColor: Color) {
         self.sprite = sprite
         self.origin = origin
         self.rotation = rotation
@@ -28,13 +28,19 @@ public final class SpriteAnimator {
         self.repeatable = repeatable
         self.tintColor = tintColor
 
-        self.spriteSize = sprite.frameDimensions
+        self.spriteSize = self.sprite.frameDimensions
     }
 }
 
 extension SpriteAnimator {
+    /// Main Render function for the Sprite Animator that renders the animation with drawTexturePro using data from Sprite type and assigned variable data during construction.
     public func render() {
-        Raylib.drawTexturePro(self.sprite.spriteSheet, Rectangle(x: Float32(startingFrame) * Float32(self.sprite.frameDimensions.x), y: Float32(column) * Float32(self.sprite.frameDimensions.y), width: Float32(self.spriteSize.x), height: Float32(self.spriteSize.y)), Rectangle(x: self.sprite.position.x, y: self.sprite.position.y, width: Float32(self.sprite.frameDimensions.x) * self.sprite.scale.x, height: self.sprite.frameDimensions.y * self.sprite.scale.x), Vector2(x: self.origin.x, y: self.origin.y), self.rotation, self.tintColor)
+        Raylib.drawTexturePro(self.sprite.spriteSheet, 
+        Rectangle(x: Float32(startingFrame) * Float32(self.sprite.frameDimensions.x), y: Float32(column) * Float32(self.sprite.frameDimensions.y), width: Float32(self.spriteSize.x), height: Float32(self.spriteSize.y)), 
+        Rectangle(x: self.sprite.position.x, y: self.sprite.position.y, width: Float32(self.sprite.frameDimensions.x) * self.sprite.scale.x, height: self.sprite.frameDimensions.y * self.sprite.scale.y), 
+        Vector2(x: self.origin.x, y: self.origin.y), 
+        self.rotation, 
+        self.tintColor)
     }
 }
 
@@ -64,14 +70,7 @@ extension SpriteAnimator {
 
 extension SpriteAnimator {
     public func flipSprite(horizontal: Bool, vertical: Bool) {
-
-        if horizontal && vertical {
-            self.spriteSize.x *= -1
-            self.spriteSize.y *= -1
-        } else if horizontal {
-            self.spriteSize.x *= -1
-        } else if vertical {
-            self.spriteSize.y *= -1
-        }
+        self.spriteSize.x = abs(self.spriteSize.x) * (horizontal ? -1 : 1)
+        self.spriteSize.y = abs(self.spriteSize.y) * (vertical ? -1 : 1)
     }
 }
