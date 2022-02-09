@@ -3,7 +3,7 @@
 
 Aeni allows you to quickly and easily animate your spritesheet in your Raylib for Swift project! It divides the process into two simple steps to create a working animation.
 
-Aeni is a shortened word for *"aenimeisheon"* in Korean.
+Aeni is a shortened word for *"aenimeisheon"* in Korean which translates to "Animation".
 
 Instructions
 =====
