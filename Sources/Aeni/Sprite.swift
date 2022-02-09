@@ -1,6 +1,9 @@
 import Raylib
 
+// MARK: Sprite Type
 public final class Sprite {
+
+    // Public variable decleration
     public var spriteSheet: Texture2D
     public var frameDimensions: Vector2
     public var scale: Vector2
