@@ -1,5 +1,6 @@
 import Raylib
 
+//MARK: Sprite Animation System
 public final class SpriteAnimator {
     public var sprite: Sprite
     public var origin: Vector2
@@ -33,7 +34,9 @@ public final class SpriteAnimator {
 }
 
 extension SpriteAnimator {
-    /// Main Render function for the Sprite Animator that renders the animation with drawTexturePro using data from Sprite type and assigned variable data during construction.
+
+    //MARK: Main render function for the Sprite Animator that renders the animation with drawTexturePro using data from Sprite type and assigned variable data during construction. 
+    // Destination rectangle for drawTexturePro uses internal variable spriteSize and not the frameDimensions in order to flip the sprite in the flipSprite function.
     public func render() {
         Raylib.drawTexturePro(self.sprite.spriteSheet, 
         Rectangle(x: Float32(startingFrame) * Float32(self.sprite.frameDimensions.x), y: Float32(column) * Float32(self.sprite.frameDimensions.y), width: Float32(self.spriteSize.x), height: Float32(self.spriteSize.y)), 
