@@ -50,7 +50,8 @@ let playerSprite = Raylib.loadTexture(spriteLocation!.path)
 let player = Sprite(spriteSheet: playerSprite, frameDimensions: Vector2(x: 24, y: 24), scale: Vector2(x: 2, y: 2), position: Vector2(x: 50, y: 50))
 let playerIdle = SpriteAnimator(sprite: player, origin: Vector2(x: player.frameDimensions.x, y: player.frameDimensions.y), rotation: 0, startingFrame: 0, endingFrame: 4, column: 0, duration: 0, animationSpeed: 0.17, repeatable: true, tintColor: .white)
 
-// You can continue adding more animations using the same Sprite and easily swap them around using a variable that holds the current animation or store them in a dictionary.
+// You can continue adding more animations using the same Sprite and easily swap them around using a variable 
+// that holds the current animation or store them in a dictionary.
 
 while !Raylib.windowShouldClose {
     Raylib.beginDrawing()
