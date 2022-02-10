@@ -1,4 +1,8 @@
-# Aeni
+<p align="center">
+  <img src="https://i.imgur.com/uYwVATH.png" />
+</p>
+
+# About
 *A simple spritesheet animation system* for [Raylib on Swift.](https://github.com/STREGAsGate/Raylib)
 
 Aeni allows you to quickly and easily animate your spritesheet in your Raylib for Swift project! It divides the process into two simple steps to create a working animation.
