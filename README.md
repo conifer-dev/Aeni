@@ -74,7 +74,7 @@ Let's go through Sprite and SpriteAnimator one by one and the properties mean:
 | ----------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | __spriteSheet - Texture2D__ | `playerSprite`  | Required path to the spritesheet itself.
 | __frameDimensions - Vector2__ | `Vector2(x: 24, y: 24)`   | These are the dimensions of the animation frames stored in a Vector2 type, x representing width and y representing height. These dimensions will be the same size as your character. In our example, the character is 24x24. |
-| __scale - Vector2__   | `Vector2(x: 2, y: 2)` | The scale represents how much we would like to scale up our sprite by. If you don't want to scale up your sprite you can simply put 0 on both x & y.                                              |
+| __scale - Vector2__   | `Vector2(x: 2, y: 2)` | The scale represents how much we would like to scale up our sprite by. If you don't want to scale up your sprite you can simply put 1 on both x & y.                                              |
 | __position - Vector2__ | `Vector2(x: 50, y: 50)`  | Position property represents the location of your sprite, its x & y properties can be used to move the sprite in your window/game.| 
 
 
