@@ -48,7 +48,7 @@ Raylib.setTargetFPS(60)
 let spriteLocation = Bundle.module.url(forResource: "player_sheet", withExtension: "png")
 let playerSprite = Raylib.loadTexture(spriteLocation!.path)
 let player = Sprite(spriteSheet: playerSprite, frameDimensions: Vector2(x: 24, y: 24), scale: Vector2(x: 2, y: 2), position: Vector2(x: 50, y: 50))
-let playerIdle = SpriteAnimator(sprite: player, origin: Vector2(x: player.frameDimensions.x, y: player.frameDimensions.y), rotation: 0, startingFrame: 0, endingFrame: 4, column: 0, duration: 0, animationSpeed: 0.17, repeatable: true, tintColor: .white)
+let playerIdle = SpriteAnimator(sprite: player, origin: Vector2(x: 0, y: 3), rotation: 0, startingFrame: 0, endingFrame: 4, column: 0, duration: 0, animationSpeed: 0.17, repeatable: true, tintColor: .white, debugMode: true)
 
 // You can continue adding more animations using the same Sprite and easily swap them around using a variable 
 // that holds the current animation or store them in a dictionary.
@@ -83,17 +83,19 @@ Let's go through Sprite and SpriteAnimator one by one and the properties mean:
 | Property    | Example               | Description                                                                                                                                                                               |
 | ----------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | __sprite - Sprite__ | `player`  | Sprite type required to for the Sprite Animator to work.
-| __origin - Vector2__ | `Vector2(x: player.frameDimensions.x, y: player.frameDimensions.y)`   | The origin point of the Sprite (rotation/scale point) will usually be your frame dimensions. |
+| __origin - Vector2__ | `Vector2(x: 0, y: 3)`   | The origin point of the Sprite (rotation/scale point and your hitboxes) will usually be 0 on both axies, however. It's worth nothing that this highly depends on your sprite. Its highly recommended to turn on debug mode and align your origin appropriately. |
 | __startingFrame - UInt__   | `0` | The starting point of your animation.                                              |
 | __endingFrame - UInt__ | `4`  | The last frame in the row of your animation is where your animation will end or begin looping through if repeatable is set to true.| 
 | __column - UInt__ | `0`  | Which column you would like to animate through. Every spritesheet starts from 0, therefore your first row of animation will be on column 0.| 
 | __duration - Float32__ | `3`  | How long you would like your animation to last. It's counted in seconds.| 
 | __animationSpeed - Float32__ | `0.17`  | How fast you would like to have your sprite to be animated.| 
 | __repeatable - Bool__ | `true`  | This value when set to true will loop your animation.| 
+| __tintColor - Color__ | `.white`  | Tint color of your sprite, if you don't want to include any, use white.| 
+| __debugMode - Bool__ | `true`  | Debug mode will render out the destination rectangle/hitbox of your animation.| 
 
 Future plans
 =====
-There are many things I want to add to Aeni, mainly internal collision detection between two Sprites so that it would be integrated within the Sprite type. If you have any suggestions on what to add please let me know and I will do my best!
+There are many things I want to add to Aeni, ~~mainly internal collision detection between two Sprites so that it would be integrated within the Sprite type.~~ If you have any suggestions on what to add please let me know and I will do my best!
 
 Closing notes
 =====
