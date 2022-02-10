@@ -1,13 +1,16 @@
 import Raylib
 
-// MARK: Sprite Type
+// MARK: Sprite Type.
 public final class Sprite {
 
-    // Public variable decleration
+    // Public variable decleration.
     public var spriteSheet: Texture2D
     public var frameDimensions: Vector2
     public var scale: Vector2
     public var position: Vector2
+
+    // Internal variable decleration.
+    internal var sourceRect: Rectangle = Rectangle()
 
     public init(spriteSheet: Texture2D, frameDimensions: Vector2, scale: Vector2, position: Vector2) {
         self.spriteSheet = spriteSheet

@@ -1,9 +1,9 @@
 import Raylib
 
-// MARK: Sprite Animation System
+// MARK: Sprite Animation System.
 public final class SpriteAnimator {
 
-    // Public variable declerations
+    // Public variable declerations.
     public var sprite: Sprite
     public var origin: Vector2
     public var rotation: Float32
@@ -14,13 +14,17 @@ public final class SpriteAnimator {
     public var animationSpeed: Float32
     public var repeatable: Bool
     public var tintColor: Color
+    public var debugMode: Bool
 
-    // Internal variables declarations
+    // Pre-set variables without need to initialise.
+    public var destRect: Rectangle = Rectangle()
+
+    // Internal variables declarations.
     internal var timeSinceStart: Float32 = 0
     internal var isAnimationFinished: Bool = false
     internal var spriteSize: Vector2
 
-    public init(sprite: Sprite,origin: Vector2, rotation: Float32, startingFrame: UInt, endingFrame: UInt, column: UInt, duration: Float32, animationSpeed: Float32, repeatable: Bool, tintColor: Color) {
+    public init(sprite: Sprite, origin: Vector2, rotation: Float32, startingFrame: UInt, endingFrame: UInt, column: UInt, duration: Float32, animationSpeed: Float32, repeatable: Bool, tintColor: Color, debugMode: Bool) {
         self.sprite = sprite
         self.origin = origin
         self.rotation = rotation
@@ -31,7 +35,9 @@ public final class SpriteAnimator {
         self.animationSpeed = animationSpeed
         self.repeatable = repeatable
         self.tintColor = tintColor
+        self.debugMode = debugMode
 
+        // Internal variable pre-initialisation.
         self.spriteSize = self.sprite.frameDimensions
     }
 }
@@ -41,18 +47,31 @@ extension SpriteAnimator {
     /// Main render function for the Sprite Animator that renders the animation with drawTexturePro using data from Sprite type and assigned variable data during construction. 
     /// Destination rectangle for drawTexturePro uses internal variable spriteSize and not the frameDimensions in order to flip the sprite in the flipSprite function.
     public func render() {
+
+        // Internal Sprite type rectangle assigned to renderer
+        self.sprite.sourceRect = Rectangle(x: Float32(startingFrame) * Float32(self.sprite.frameDimensions.x), y: Float32(column) * Float32(self.sprite.frameDimensions.y), width: Float32(self.spriteSize.x), height: Float32(self.spriteSize.y))
+        // Sprite Animators assigned destination rectangle that is responsible for rendering the position and scale of the Sprite.
+        self.destRect = Rectangle(x: self.sprite.position.x, y: self.sprite.position.y, width: self.sprite.frameDimensions.x * self.sprite.scale.x, height: self.sprite.frameDimensions.y * self.sprite.scale.y)
+        
         Raylib.drawTexturePro(self.sprite.spriteSheet, 
-        Rectangle(x: Float32(startingFrame) * Float32(self.sprite.frameDimensions.x), y: Float32(column) * Float32(self.sprite.frameDimensions.y), width: Float32(self.spriteSize.x), height: Float32(self.spriteSize.y)), 
-        Rectangle(x: self.sprite.position.x, y: self.sprite.position.y, width: Float32(self.sprite.frameDimensions.x) * self.sprite.scale.x, height: self.sprite.frameDimensions.y * self.sprite.scale.y), 
+        self.sprite.sourceRect, 
+        destRect, 
         Vector2(x: self.origin.x, y: self.origin.y), 
         self.rotation, 
         self.tintColor)
+
+        // If enabled, debug mode will render a box around the sprite that represents its hitbox for collision detection. 
+        // Highly recommended to enable in order to find the sweet spot for your origin point.
+        if self.debugMode {
+            Raylib.drawRectangleLines(Int32(self.sprite.position.x), Int32(self.sprite.position.y), Int32(destRect.width), Int32(destRect.height), .red)
+        }
+        
     }
 }
 
 extension SpriteAnimator {
 
-    /// Main update function for the Sprite Animator, not much to say other than it makes your animation go bbrrrrr
+    /// Main update function for the Sprite Animator, not much to say other than it makes your animation go bbrrrrr.
     public func update() {
 
         // Run only when animation is not finished.
@@ -85,5 +104,18 @@ extension SpriteAnimator {
     public func flipSprite(horizontal: Bool, vertical: Bool) {
         self.spriteSize.x = abs(self.spriteSize.x) * (horizontal ? -1 : 1)
         self.spriteSize.y = abs(self.spriteSize.y) * (vertical ? -1 : 1)
+    }
+}
+
+extension SpriteAnimator {
+
+    /// hasCollided function requires you to provide anothers sprite animations destination rectangle. It's a public animator variable called destRect.
+    /// Returns true on collision and false when no collision is detected.
+    public func hasCollided(with secondSprite: Rectangle) -> Bool {
+        if Raylib.checkCollisionRecs(self.destRect, secondSprite) {
+            return true
+        } else {
+            return false
+        }
     }
 }
