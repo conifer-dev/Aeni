@@ -47,8 +47,8 @@ Raylib.setTargetFPS(60)
 
 let spriteLocation = Bundle.module.url(forResource: "player_sheet", withExtension: "png")
 let playerSprite = Raylib.loadTexture(spriteLocation!.path)
-let player = Sprite(spriteSheet: playerSprite, frameDimensions: Vector2(x: 24, y: 24), scale: Vector2(x: 2, y: 2), position: Vector2(x: 50, y: 50))
-let playerIdle = SpriteAnimator(sprite: player, origin: Vector2(x: 0, y: 3), rotation: 0, startingFrame: 0, endingFrame: 4, column: 0, duration: 0, animationSpeed: 0.17, repeatable: true, tintColor: .white, debugMode: true)
+let player = Sprite(spriteSheet: playerSprite, frameDimensions: Vector2(x: 24, y: 24), scale: Vector2(x: 2, y: 2))
+let playerIdle = SpriteAnimator(sprite: player, position: Vector2(x: 50, y: 50), origin: Vector2(x: 0, y: 3), rotation: 0, startingFrame: 0, endingFrame: 4, column: 0, duration: 0, animationSpeed: 0.17, repeatable: true, tintColor: .white, debugMode: true)
 
 // You can continue adding more animations using the same Sprite and easily swap them around using a variable 
 // that holds the current animation or store them in a dictionary.
@@ -75,7 +75,6 @@ Let's go through Sprite and SpriteAnimator one by one and the properties mean:
 | __spriteSheet - Texture2D__ | `playerSprite`  | Required path to the spritesheet itself.
 | __frameDimensions - Vector2__ | `Vector2(x: 24, y: 24)`   | These are the dimensions of the animation frames stored in a Vector2 type, x representing width and y representing height. These dimensions will be the same size as your character. In our example, the character is 24x24. |
 | __scale - Vector2__   | `Vector2(x: 2, y: 2)` | The scale represents how much we would like to scale up our sprite by. If you don't want to scale up your sprite you can simply put 1 on both x & y.                                              |
-| __position - Vector2__ | `Vector2(x: 50, y: 50)`  | Position property represents the location of your sprite, its x & y properties can be used to move the sprite in your window/game.| 
 
 
 ### Sprite Animator
@@ -83,6 +82,7 @@ Let's go through Sprite and SpriteAnimator one by one and the properties mean:
 | Property    | Example               | Description                                                                                                                                                                               |
 | ----------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | __sprite - Sprite__ | `player`  | Sprite type required to for the Sprite Animator to work.
+| __position - Vector2__ | `Vector2(x: 50, y: 50)`  | Position property represents the location of your sprite, its x & y properties can be used to move the sprite in your window/game.| 
 | __origin - Vector2__ | `Vector2(x: 0, y: 3)`   | The origin point of the Sprite (rotation/scale point and your hitboxes) will usually be 0 on both axies, however. It's worth nothing that this highly depends on your sprite. Its highly recommended to turn on debug mode and align your origin appropriately. |
 | __startingFrame - UInt__   | `0` | The starting point of your animation.                                              |
 | __endingFrame - UInt__ | `4`  | The last frame in the row of your animation is where your animation will end or begin looping through if repeatable is set to true.| 
