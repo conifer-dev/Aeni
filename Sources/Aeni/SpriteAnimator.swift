@@ -5,7 +5,6 @@ public final class SpriteAnimator {
 
     // Public variable declerations.
     public var sprite: Sprite
-    public var position: Vector2
     public var origin: Vector2
     public var rotation: Float32
     public var startingFrame: UInt
@@ -25,9 +24,8 @@ public final class SpriteAnimator {
     internal var isAnimationFinished: Bool = false
     internal var spriteSize: Vector2
 
-    public init(sprite: Sprite, position: Vector2, origin: Vector2, rotation: Float32, startingFrame: UInt, endingFrame: UInt, column: UInt, duration: Float32, animationSpeed: Float32, repeatable: Bool, tintColor: Color, debugMode: Bool) {
+    public init(sprite: Sprite, origin: Vector2, rotation: Float32, startingFrame: UInt, endingFrame: UInt, column: UInt, duration: Float32, animationSpeed: Float32, repeatable: Bool, tintColor: Color, debugMode: Bool) {
         self.sprite = sprite
-        self.position = position
         self.origin = origin
         self.rotation = rotation
         self.startingFrame = startingFrame
@@ -53,7 +51,7 @@ extension SpriteAnimator {
         // Internal Sprite type rectangle assigned to renderer
         self.sprite.sourceRect = Rectangle(x: Float32(startingFrame) * Float32(self.sprite.frameDimensions.x), y: Float32(column) * Float32(self.sprite.frameDimensions.y), width: Float32(self.spriteSize.x), height: Float32(self.spriteSize.y))
         // Sprite Animators assigned destination rectangle that is responsible for rendering the position and scale of the Sprite.
-        self.destRect = Rectangle(x: self.position.x, y: self.position.y, width: self.sprite.frameDimensions.x * self.sprite.scale.x, height: self.sprite.frameDimensions.y * self.sprite.scale.y)
+        self.destRect = Rectangle(x: self.sprite.position.x, y: self.sprite.position.y, width: self.sprite.frameDimensions.x * self.sprite.scale.x, height: self.sprite.frameDimensions.y * self.sprite.scale.y)
         
         // Rendering the animation.
         Raylib.drawTexturePro(self.sprite.spriteSheet, 
@@ -66,7 +64,7 @@ extension SpriteAnimator {
         // If enabled, debug mode will render a box around the sprite that represents its hitbox for collision detection. 
         // Highly recommended to enable in order to find the sweet spot for your origin point.
         if self.debugMode {
-            Raylib.drawRectangleLines(Int32(self.position.x), Int32(self.position.y), Int32(destRect.width), Int32(destRect.height), .red)
+            Raylib.drawRectangleLines(Int32(self.sprite.position.x), Int32(self.sprite.position.y), Int32(destRect.width), Int32(destRect.height), .red)
         }
         
     }
