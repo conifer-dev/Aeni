@@ -16,22 +16,7 @@ Getting Aeni set up and running is easy, you can have it ready to go in no more 
 Firstly make sure you added Aeni as your dependency package!
 
 ```swift
-// swift-tools-version:5.5
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-import PackageDescription
-
-let package = Package(
-    name: "Aeni Example",
-    dependencies: [
-        .package(url: "https://github.com/STREGAsGate/Raylib.git", .branch("master")),
-        .package(url: "https://github.com/conifer-dev/Aeni.git", .branch("main"))
-    ],
-    targets: [
-        .executableTarget(name: "AeniExample",
-                          dependencies: ["Raylib", "Aeni"],
-                          resources: [.process("Assets")]),
-    ]
-)
+.package(url: "https://github.com/conifer-dev/Aeni.git", .branch("main"))
 ```
 
 The library is split into two parts, the Sprite type that is used to create a custom Sprite type and the Sprite Animator that accepts Sprite as a requirement in order to animate through the spritesheet that the Sprite holds.
