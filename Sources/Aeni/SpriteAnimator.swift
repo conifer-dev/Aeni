@@ -73,12 +73,12 @@ extension SpriteAnimator {
 extension SpriteAnimator {
 
     /// Main update function for the Sprite Animator, not much to say other than it makes your animation go bbrrrrr.
-    public func update() {
+    public func update(deltaTime dt: Float) {
 
         // Run only when animation is not finished.
         if !isAnimationFinished {
-            timeSinceStart += Raylib.getFrameTime()
-            duration -= Raylib.getFrameTime()
+            timeSinceStart += dt
+            duration -= dt
 
             // Iterating our startingFrame by one based on the speed provided.
             if timeSinceStart >= self.animationSpeed {
