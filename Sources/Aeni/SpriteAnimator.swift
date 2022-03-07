@@ -20,9 +20,9 @@ public final class SpriteAnimator {
     public private (set) var destRect: Rectangle = Rectangle()
 
     // Internal variables declarations.
-    internal var timeSinceStart: Float32 = 0
-    internal var isAnimationFinished: Bool = false
-    internal var spriteSize: Vector2
+    @usableFromInline internal var timeSinceStart: Float32 = 0
+    @usableFromInline internal var isAnimationFinished: Bool = false
+    @usableFromInline internal var spriteSize: Vector2
 
     public init(sprite: Sprite, origin: Vector2, rotation: Float32, startingFrame: UInt, endingFrame: UInt, column: UInt, duration: Float32, animationSpeed: Float32, repeatable: Bool, tintColor: Color, debugMode: Bool) {
         self.sprite = sprite
