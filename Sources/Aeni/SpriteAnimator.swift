@@ -46,7 +46,7 @@ extension SpriteAnimator {
 
     /// Main render function for the Sprite Animator that renders the animation with drawTexturePro using data from Sprite type and assigned variable data during construction. 
     /// Destination rectangle for drawTexturePro uses internal variable spriteSize and not the frameDimensions in order to flip the sprite in the flipSprite function.
-    public func render() {
+   @inlinable public func render() {
 
         // Internal Sprite type rectangle assigned to renderer
         self.sprite.sourceRect = Rectangle(x: Float32(startingFrame) * Float32(self.sprite.frameDimensions.x), y: Float32(column) * Float32(self.sprite.frameDimensions.y), width: Float32(self.spriteSize.x), height: Float32(self.spriteSize.y))
@@ -73,7 +73,7 @@ extension SpriteAnimator {
 extension SpriteAnimator {
 
     /// Main update function for the Sprite Animator, not much to say other than it makes your animation go bbrrrrr.
-    public func update(deltaTime dt: Float) {
+    @inlinable public func update(deltaTime dt: Float) {
 
         // Run only when animation is not finished.
         if !isAnimationFinished {
@@ -102,7 +102,7 @@ extension SpriteAnimator {
 extension SpriteAnimator {
 
     /// flipSprite function is used to flip the selected animation sprite either vertically, horizontally or both.
-    public func flipSprite(horizontal: Bool, vertical: Bool) {
+   @inlinable public func flipSprite(horizontal: Bool, vertical: Bool) {
         self.spriteSize.x = abs(self.spriteSize.x) * (horizontal ? -1 : 1)
         self.spriteSize.y = abs(self.spriteSize.y) * (vertical ? -1 : 1)
     }
@@ -112,7 +112,7 @@ extension SpriteAnimator {
 
     /// hasCollided function requires you to provide anothers sprite animations destination rectangle. It's a public animator variable called destRect.
     /// Returns true on collision and false when no collision is detected.
-    public func hasCollided(with secondSprite: Rectangle) -> Bool {
+   @inlinable public func hasCollided(with secondSprite: Rectangle) -> Bool {
         if Raylib.checkCollisionRecs(self.destRect, secondSprite) {
             return true
         } else {
