@@ -10,7 +10,7 @@ public final class Sprite {
     public var position: Vector2
 
     // Internal variable decleration.
-    internal var sourceRect: Rectangle = Rectangle()
+    @usableFromInline internal var sourceRect: Rectangle = Rectangle()
 
     public init(spriteSheet: Texture2D, frameDimensions: Vector2, scale: Vector2, position: Vector2) {
         self.spriteSheet = spriteSheet
